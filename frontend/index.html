@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ClaimEase</title>
+</head>
+<body>
+  <h2>ClaimEase – Smart Insurance Claim Simplification Platform</h2>
+
+  <form id="claimForm">
+    <input id="name" placeholder="Customer Name" required />
+    <input id="type" placeholder="Claim Type (Health / Vehicle)" required />
+    <button type="submit">Submit Claim</button>
+  </form>
+
+  <script>
+    document.getElementById("claimForm").onsubmit = async function(e) {
+      e.preventDefault();
+      await fetch("http://localhost:8000/claims", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          user_name: name.value,
+          claim_type: type.value
+        })
+      });
+      alert("Claim submitted successfully");
+    }
+  </script>
+</body>
+</html>
